@@ -22,4 +22,5 @@ patterns to help HR reduce turnover and optimize talent management.
 
 ## Status
 - [x] Task 1: Workforce Overview + Data Audit
-- [ ] Task 2: In progress
+- [x] Task 2: Attrition Analysis by Department and Job Role
+- [x] Task 2: In Progress
