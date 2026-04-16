@@ -21,4 +21,5 @@ patterns to help HR reduce turnover and optimize talent management.
 | `insights.md` | Business findings from the analysis |
 
 ## Status
-- [ ] Task 1: In progress
+- [x] Task 1: Workforce Overview + Data Audit
+- [ ] Task 2: In progress
