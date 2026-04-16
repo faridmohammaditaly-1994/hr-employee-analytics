@@ -131,8 +131,6 @@ ORDER BY job_level;
 -- --------------------------------------------
 -- TASK 4: Tenure and Promotion Analysis
 -- --------------------------------------------
-
--- Part A: Tenure Buckets
 WITH tenure_buckets AS (
     SELECT
         CASE
@@ -146,6 +144,8 @@ WITH tenure_buckets AS (
               * 100.0 / NULLIF(COUNT(*), 0), 2)                      AS attrition_rate_pct,
         ROUND(AVG(monthly_income), 2)                                AS avg_monthly_income,
         ROUND(AVG(years_since_last_promotion), 2)                    AS avg_years_since_promotion,
+        ROUND(AVG(years_at_company)
+              / NULLIF(AVG(years_since_last_promotion), 0), 2)       AS promotion_rate,
         ROUND(AVG(job_satisfaction), 2)                              AS avg_job_satisfaction
     FROM employees
     GROUP BY tenure_bucket
@@ -159,28 +159,6 @@ ORDER BY
         WHEN '6-10 years' THEN 3
         WHEN '10+ years'  THEN 4
     END;
-
-
--- Part B: Promotion Lag by Department
-WITH dept_promotion AS (
-    SELECT
-        department,
-        ROUND(AVG(years_since_last_promotion), 2)                    AS avg_years_since_promotion,
-        ROUND(AVG(years_at_company), 2)                              AS avg_years_at_company,
-        ROUND(AVG(years_at_company)
-              / NULLIF(AVG(years_since_last_promotion), 0), 2)       AS promotion_rate
-    FROM employees
-    GROUP BY department
-)
-SELECT
-    department,
-    avg_years_since_promotion,
-    avg_years_at_company,
-    promotion_rate,
-    LEAD(avg_years_since_promotion, 1)
-        OVER (ORDER BY avg_years_since_promotion ASC)                AS next_dept_avg_promotion
-FROM dept_promotion
-ORDER BY avg_years_since_promotion ASC;
 	
 	
 
