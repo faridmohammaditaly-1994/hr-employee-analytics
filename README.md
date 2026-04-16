@@ -25,4 +25,5 @@ patterns to help HR reduce turnover and optimize talent management.
 - [x] Task 2: Attrition Analysis by Department and Job Role
 - [x] Task 3: Compensation Analysis
 - [x] Task 4: Tenure and Promotion Analysis
-- [x] Task 5: In Progress
+- [x] Task 5: Satisfaction and Attrition Analysis
+- [ ] Task 6: In progress

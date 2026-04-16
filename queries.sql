@@ -164,6 +164,37 @@ ORDER BY
 
 
 
+-- --------------------------------------------
+-- TASK 5: Satisfaction and Attrition Analysis
+-- --------------------------------------------
+WITH satisfaction_buckets AS (
+    SELECT
+        CASE
+            WHEN job_satisfaction = 1 THEN 'Low'
+            WHEN job_satisfaction = 2 THEN 'Medium'
+            WHEN job_satisfaction = 3 THEN 'High'
+            WHEN job_satisfaction = 4 THEN 'Very High'
+        END                                                          AS satisfaction_level,
+        job_satisfaction,
+        COUNT(*)                                                     AS total_employees,
+        ROUND(COUNT(CASE WHEN attrition = 'Yes' THEN 1 END)::NUMERIC
+              * 100.0 / NULLIF(COUNT(*), 0), 2)                      AS attrition_rate_pct,
+        ROUND(AVG(monthly_income), 2)                                AS avg_monthly_income,
+        ROUND(COUNT(overtime) FILTER (WHERE overtime = 'Yes')
+              * 100.0 / COUNT(overtime), 2)                          AS overtime_rate_pct,
+        ROUND(AVG(work_life_balance), 2)                             AS avg_work_life_balance
+    FROM employees
+    GROUP BY job_satisfaction
+)
+SELECT
+    satisfaction_level,
+    total_employees,
+    attrition_rate_pct,
+    avg_monthly_income,
+    overtime_rate_pct,
+    avg_work_life_balance
+FROM satisfaction_buckets
+ORDER BY job_satisfaction;
 
 
 
