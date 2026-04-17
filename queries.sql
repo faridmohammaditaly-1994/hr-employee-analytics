@@ -228,6 +228,30 @@ ORDER BY job_level;
 
 
 
+-- --------------------------------------------
+-- TASK 7: Employee Directory
+-- --------------------------------------------
+SELECT
+    employee_number,
+    CONCAT(INITCAP(job_role), ' - ', INITCAP(department))            AS role_department,
+    INITCAP(gender)                                                  AS gender,
+    INITCAP(education_field)                                         AS education_field,
+    CASE
+        WHEN job_level <= 2 THEN 'Junior'
+        WHEN job_level  = 3 THEN 'Mid-Level'
+        ELSE 'Senior'
+    END                                                              AS seniority_level,
+    CASE
+        WHEN monthly_income >= 10000 THEN 'High Earner'
+        WHEN monthly_income >= 5000  THEN 'Mid Earner'
+        ELSE 'Low Earner'
+    END                                                              AS income_label,
+    CASE
+        WHEN overtime = 'Yes' THEN 'Overtime'
+        ELSE 'Standard'
+    END                                                              AS work_schedule
+FROM employees
+ORDER BY employee_number;
 
 
 
