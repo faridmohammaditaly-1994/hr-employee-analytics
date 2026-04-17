@@ -196,6 +196,36 @@ SELECT
 FROM satisfaction_buckets
 ORDER BY job_satisfaction;
 
+-- --------------------------------------------
+-- TASK 6: Income Progression by Job Level
+-- --------------------------------------------
+WITH income_by_level AS (
+    SELECT
+        job_level,
+        COUNT(*)                                                     AS headcount,
+        ROUND(AVG(monthly_income), 2)                                AS avg_monthly_income,
+        MIN(monthly_income)                                          AS min_monthly_income,
+        MAX(monthly_income)                                          AS max_monthly_income,
+        MAX(monthly_income) - MIN(monthly_income)                    AS income_range,
+        LEAD(ROUND(AVG(monthly_income), 2), 1)
+            OVER (ORDER BY job_level)                                AS next_level_avg_income
+    FROM employees
+    GROUP BY job_level
+)
+SELECT
+    job_level,
+    headcount,
+    avg_monthly_income,
+    min_monthly_income,
+    max_monthly_income,
+    income_range,
+    next_level_avg_income,
+    ROUND(next_level_avg_income - avg_monthly_income, 2)             AS income_jump,
+    ROUND((next_level_avg_income - avg_monthly_income)
+          * 100.0 / NULLIF(avg_monthly_income, 0), 2)               AS income_jump_pct
+FROM income_by_level
+ORDER BY job_level;
+
 
 
 
