@@ -27,4 +27,5 @@ patterns to help HR reduce turnover and optimize talent management.
 - [x] Task 4: Tenure and Promotion Analysis
 - [x] Task 5: Satisfaction and Attrition Analysis
 - [x] Task 6: Income Progression by Job Level
-- [ ] Task 7: In progress
+- [x] Task 7: Employee Directory
+- [ ] Task 8: In progress
