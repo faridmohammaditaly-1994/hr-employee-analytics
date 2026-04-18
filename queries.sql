@@ -254,11 +254,52 @@ FROM employees
 ORDER BY employee_number;
 
 
+-- --------------------------------------------
+-- TASK 8: Attrition Risk Score
+-- --------------------------------------------
+WITH risk_scores AS (
+    SELECT
+        employee_number,
+        attrition,
+        monthly_income,
+        job_satisfaction,
+        years_at_company,
+        CASE WHEN overtime = 'Yes'               THEN 3 ELSE 0 END
+        + CASE WHEN job_satisfaction <= 2         THEN 2 ELSE 0 END
+        + CASE WHEN work_life_balance <= 2        THEN 2 ELSE 0 END
+        + CASE WHEN years_since_last_promotion >= 5 THEN 2 ELSE 0 END
+        + CASE WHEN distance_from_home >= 20      THEN 1 ELSE 0 END
+        + CASE WHEN num_companies_worked >= 5     THEN 1 ELSE 0 END
+        + CASE WHEN environment_satisfaction <= 2 THEN 1 ELSE 0 END
+                                                                     AS risk_score
+    FROM employees
+),
+risk_tiers AS (
+    SELECT
+        *,
+        CASE
+            WHEN risk_score >= 7 THEN 'High Risk'
+            WHEN risk_score >= 4 THEN 'Medium Risk'
+            ELSE 'Low Risk'
+        END                                                          AS risk_tier
+    FROM risk_scores
+)
+SELECT
+    risk_tier,
+    COUNT(*)                                                         AS total_employees,
+    ROUND(COUNT(CASE WHEN attrition = 'Yes' THEN 1 END) * 100.0
+          / NULLIF(COUNT(*), 0), 2)                                  AS attrition_rate_pct,
+    ROUND(AVG(risk_score), 2)                                        AS avg_risk_score,
+    ROUND(AVG(monthly_income), 2)                                    AS avg_monthly_income,
+    ROUND(AVG(job_satisfaction), 2)                                  AS avg_job_satisfaction,
+    ROUND(AVG(years_at_company), 2)                                  AS avg_years_at_company
+FROM risk_tiers
+GROUP BY risk_tier
+ORDER BY AVG(risk_score) DESC;
 
 
 
-
-
+		
 
 
 
