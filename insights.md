@@ -14,9 +14,11 @@
   despite being the largest department
 
 ## 3. Compensation Analysis
-- Gender pay gap exists across all departments
-  — males earn more on average in every department
-- Sales department shows the largest pay gap
+- Female employees earn more than male employees
+  across all three departments
+- The pay gap in favor of females is largest in Human Resources
+  (~$893/month) and Research & Development (~$384/month)
+- Sales shows the smallest gap (~$22/month) — nearly equal pay
 - Job level strongly predicts income — level 5 earns
   roughly 3-4x more than level 1
 
