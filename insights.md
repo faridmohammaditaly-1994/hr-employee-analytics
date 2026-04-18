@@ -49,10 +49,20 @@
   inconsistent compensation practices
 
 ## 7. Attrition Risk Score
-- High Risk employees show actual attrition rates
-  significantly above company average
-- Overtime is the single biggest risk factor (+3 points)
-- Low satisfaction + low work-life balance + no recent promotion
-  creates the most dangerous combination
-- HR should prioritize retention conversations with
-  High Risk employees in Sales and Laboratory roles
+- High Risk employees (119 employees, 8% of workforce) show
+  attrition rate of 30.25% — 3x higher than Low Risk group (9.53%)
+- Risk score successfully differentiates attrition behavior —
+  validating the scoring model
+- High Risk employees paradoxically earn the most ($7,699/month)
+  — compensation alone does not prevent attrition
+- Job satisfaction drops sharply from Low Risk (3.24) to
+  High Risk (1.55) — confirming satisfaction as the
+  strongest attrition predictor
+- High Risk employees have the longest tenure (9.39 years) —
+  long-tenured employees are not immune to attrition risk
+- Risk weights were updated to reflect actual data:
+  job satisfaction carries the highest weight (+3)
+  as the strongest proven predictor of attrition
+- HR should immediately prioritize the 119 High Risk employees
+  for retention conversations — focusing on satisfaction
+  and promotion opportunities

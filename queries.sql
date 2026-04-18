@@ -264,10 +264,10 @@ WITH risk_scores AS (
         monthly_income,
         job_satisfaction,
         years_at_company,
-        CASE WHEN overtime = 'Yes'               THEN 3 ELSE 0 END
-        + CASE WHEN job_satisfaction <= 2         THEN 2 ELSE 0 END
+        CASE WHEN job_satisfaction <= 2           THEN 3 ELSE 0 END
         + CASE WHEN work_life_balance <= 2        THEN 2 ELSE 0 END
         + CASE WHEN years_since_last_promotion >= 5 THEN 2 ELSE 0 END
+        + CASE WHEN overtime = 'Yes'              THEN 2 ELSE 0 END
         + CASE WHEN distance_from_home >= 20      THEN 1 ELSE 0 END
         + CASE WHEN num_companies_worked >= 5     THEN 1 ELSE 0 END
         + CASE WHEN environment_satisfaction <= 2 THEN 1 ELSE 0 END
@@ -298,13 +298,7 @@ GROUP BY risk_tier
 ORDER BY AVG(risk_score) DESC;
 
 
-
 		
-
-
-
-
-
 
 
 
