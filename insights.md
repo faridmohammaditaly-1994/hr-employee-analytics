@@ -31,9 +31,14 @@
 
 ## 5. Satisfaction and Attrition
 - Clear negative correlation between job satisfaction and attrition
-- Employees working overtime have significantly higher attrition
-- Low work-life balance scores correlate with both
-  overtime and high attrition
+  — Low satisfaction group has 2x the attrition of Very High group
+- Overtime rate does not directly predict attrition —
+  Very High satisfaction employees work the most overtime
+  yet have the lowest attrition
+- Work-life balance scores are consistent across satisfaction levels
+  — not a differentiating factor in this dataset
+- Key finding: job satisfaction is the strongest predictor
+  of attrition, not workload or work-life balance
 
 ## 6. Income Progression
 - Largest income jump occurs between levels 1 and 2
